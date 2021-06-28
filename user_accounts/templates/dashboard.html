@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+	<style>
+        a{
+            color:#23366F;
+        }
+        a:hover{
+            color: #4B74EE;
+            text-decoration: none;
+        }
+        i.fab{
+            color:#23366F;
+        }
+        i.fab:hover{
+            color: #4B74EE;
+        }
+        .content {
+            flex: 1 0 auto;
+        }
+    </style>
+</head>
+<div class="container" style="height: 100vh;">
+	<div class="card mt-5 content">
+		<div class="card-body">
+			<h4>Welcome, {{request.user.name}} </h4>
+			<br>
+			<div class="table-responsive">
+			<table id="user-table w-100"  class="table table-hover table-center">
+				<thead >
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in user_list %}
+					<tr>
+						<td class="row-center">{{user.name}}</td>
+						<td class="row-center">{{user.email}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		</div>
+	</div>
+</div>
+    
+{% endblock %}

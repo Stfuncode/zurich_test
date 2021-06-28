@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+  .button-read {
+    background-color: #009EE0; 
+    border-radius: 28%;
+    mix-blend-mode: normal;    
+    color: white;
+    width: 90px;
+    height: 70px;
+    padding: 5px 30px;
+    font-size: 24px;
+    line-height: 2;
+    border-radius: 35px;
+    
+  }
+
+  .asteriskField {
+    display: none;
+  }
+  </style>
+
+<body> 
+  <section>
+    <div class="container">
+      {% if messages %}     
+      {% for message in messages %}                
+        <div class="mx-3 pt-3">
+            {% if 'error' in message.tags %}
+              <div class="alert alert-danger w-75 m-auto" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+              </div>
+            {% endif %}
+            {% if 'success' in message.tags %}
+                <div class="alert alert-success w-75 m-auto" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}     
+        </div>
+      {% endfor %}
+    {% endif %}
+      <div class="card mx-auto my-4 w-75" >
+        <div class="card-header" >
+          <a class="btn btn-primary float-left" href={% url 'selfservice' request.user.id %}>Back</a>
+          <h4 class="text-center mr-3" style="color: blue;">MSVR Request</h4>
+        </div>
+        <form action={% url 'msvr' pk %} method="POST">       
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                {{form1.policy_effective_date|as_crispy_field}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{form1.request_date|as_crispy_field}}
+              </div>
+              <div class="col">
+                {{form1.basic_plan|as_crispy_field}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{form1.premium|as_crispy_field}}
+              </div>
+              <div class="col">
+                {{form1.sum_insured|as_crispy_field}}
+              </div>
+            </div>
+            <br>
+            <h6 style="color: blue;">Change MSVR Details</h6>
+            <br>
+            <div class="row">
+              <div class="col">
+                {{form2.current_premium|as_crispy_field}}
+              </div>
+              <div class="col">
+                {{form2.new_premium|as_crispy_field}}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    {{form2.agreement|as_crispy_field}}
+                </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-center">
+            <button class="btn btn-success" type="submit">Confirm</button>
+          </div>
+        </form>  
+      </div>
+    </div>
+  </section>
+</body> 
+{% endblock %}

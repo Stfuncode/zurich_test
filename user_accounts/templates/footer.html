@@ -1,0 +1,47 @@
+{% load static %}
+
+<head>
+    {% block css %}
+    <!-- <link rel='stylesheet' type="text/css" href="{% static 'css/sidebar.css' %}"> -->
+    {% endblock %}
+    <style>
+        a{
+            color:#23366F;
+        }
+        a:hover{
+            color: #4B74EE;
+            text-decoration: none;
+        }
+        i.fab{
+            color:#23366F;
+        }
+        i.fab:hover{
+            color: skyblue;
+        }
+        .footer {
+            flex-shrink: 0;
+            margin-top: 50px;
+        }
+
+        
+  @media screen and (max-width: 599px) {
+    .footer-container {
+        height: 150px !important;
+  }
+}
+    </style>
+</head>
+
+
+<footer class="footer">
+<nav class="navbar-light w-100 footer-container" style="background-color:#e3f2fd;height:100px;">
+    <div class="container">
+        <div class="d-flex flex-wrap">
+                <a target="__blank" class="p-2 mr-2" href="https://www.zurich.com.my/en/customer-hub/show-me-more-info/personal-data-protection-notice">Personal Data Protection Notice</a>
+                <a target="__blank" class="p-2 mr-2" href="https://www.zurich.com.my/en/services/legal">Terms and Condition</a>
+                <a target="__blank" class="p-2 mr-2" href="https://www.zurich.com.my/en/services/legal">Frequently Asked Questions(FAQ)</a>
+                <a target="__blank" class="ml-auto p-2" href="https://www.zurich.com.my/en">© Zurich Malaysia</a>
+        </div>
+    </div>
+</nav>
+</footer>

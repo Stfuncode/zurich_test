@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+  .button-read {
+    background-color: #009EE0; 
+    border-radius: 28%;
+    mix-blend-mode: normal;    
+    color: white;
+    width: 90px;
+    height: 70px;
+    padding: 5px 30px;
+    font-size: 24px;
+    line-height: 2;
+    border-radius: 35px;
+    
+  }
+  </style>
+
+<body> 
+<!-- <section>
+  <div class="container py-3">
+    <div class="card">
+      <div class="row p-5 " style="background-color:#FCEEC5;">
+        <div class="col-md-4">
+            <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/Windows_re_uo4w.svg" class="w-100">
+          </div>
+          <div class="col-md-8 px-3" >
+            <div class="card-block px-3">
+              <h4 class="card-title" style="color: blue;">Dont remove first. Angelyn Still reviewing</h4>
+              <p class="card-text">
+                  You can now access and manage your insurance policy and takaful certificate from the one dashboard anytime, anywhere.
+              </p>
+                <p class="card-text">
+                    You can now access and manage your insurance policy and takaful certificate from the one dashboard anytime, anywhere.
+                </p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section>
+  <div class="container py-3">
+    {% if messages %}     
+    {% for message in messages %}                
+      <div class="mx-3 pt-3" style="display: none;">
+          {% if 'error' in message.tags %}
+            <div class="alert alert-danger w-100 m-auto" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+          {% endif %}
+          {% if 'success' in message.tags %}
+              <div class="alert alert-success w-100 m-auto" role="alert">
+                  {{message}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          {% endif %}     
+      </div>
+    {% endfor %}
+  {% endif %}
+    <div class="text-center my-4">
+      <h4>Welcome, {{request.identity_context_data.username}} {{result.id}}</h4>
+    </div>
+    <div class="card">
+      <div class="row p-5 " style="background-color:#CCF2F0;">
+    <div class="card mt-3">
+      <div class="row p-5" style="background-color:#CCF2F0;">
+        <div class="col-md-3">
+            <img src="/static/img/homepage.png" width="250px" >
+        </div>
+          <div class="col-md-6 px-3" >
+            <div class="card-block px-3">
+              <h4 class="card-title" style="color: #009EE0;">View Your insurance policy / takaful certificate</h4>
+              <p class="card-text">
+                  You can now access and manage your insurance policy and takaful certificate from the one dashboard anytime, anywhere.
+              </p>
+                <p class="card-text">
+                    You can now access and manage your insurance policy and takaful certificate from the one dashboard anytime, anywhere.
+                </p>
+              
+            </div>
+          </div>
+          <div class="col-md-3" style="margin: auto;">
+            <a href="{% url 'selfservice' request.user.id %}" class="button-read">Access Here ></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body> 
+
+{% endblock %}

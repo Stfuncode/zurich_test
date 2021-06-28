@@ -1,0 +1,117 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+
+  .asteriskField {
+    display: none;
+  }
+  </style>
+
+<body> 
+  <section>
+    <div class="container">
+      {% if messages %}     
+      {% for message in messages %}                
+        <div class="mx-3 pt-3">
+            {% if 'error' in message.tags %}
+              <div class="alert alert-danger w-75 m-auto" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+              </div>
+            {% endif %}
+            {% if 'success' in message.tags %}
+                <div class="alert alert-success w-75 m-auto" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}     
+        </div>
+      {% endfor %}
+    {% endif %}
+      <div class="card mx-auto my-4 w-75" >
+        <div class="card-header" >
+          <a class="btn btn-primary float-left" href={% url 'selfservice' request.user.id %}>Back</a>
+          <h4 class="text-center mr-3" style="color: blue;">Nomination Request</h4>
+        </div>
+        <form action={% url 'nominationform' pk %} method="POST">   
+          {% csrf_token %}    
+          <div class="card-body">
+            <h6 style="color: blue;">Policy Details</h6>
+            <div class="row">
+              <div class="col">
+                <label for="policy_number">Policy Number</label>
+                <input type="text" class="form-control bg-light" name="policy_number"  value="{{ nominee_details.policy_number}}" required disabled>
+              </div>
+              <div class="col">
+                <label for="policy_status">Policy Status</label>
+                <input type="text" class="form-control bg-light" name="policy_status"  value="{{ nominee_details.policy_status}}" required disabled>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="insured_name">Insured Name</label>
+                <input type="text" class="form-control bg-light" name="insured_name"  value="{{ nominee_details.insured_name}}" required disabled>
+              </div>
+              <div class="col">
+                <label for="basic_product">Insured Name</label>
+                <input type="text" class="form-control bg-light" name="basic_product"  value="{{ nominee_details.basic_product}}" required disabled>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="request_date">Request Date</label>
+                <input type="text" class="form-control bg-light" name="request_date"  value="{{ nominee_details.request_date}}" required disabled>
+              </div>
+            </div>
+            <hr>
+            <h6 style="color: blue;">Nominee Information</h6>
+            <br>
+            <div class="row">
+              <div class="col">
+                {{ form1.full_name|as_crispy_field}}
+              </div>
+              <div class="col">
+                {{ form1.ic_num|as_crispy_field}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{ form1.share_num|as_crispy_field}}
+              </div>
+              <div class="col">
+                {{ form1.relationship|as_crispy_field}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{ form1.gender|as_crispy_field}}
+              </div>
+              <div class="col">
+                {{ form1.date_of_birth|as_crispy_field}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{ form1.mobile_number|as_crispy_field}}
+              </div>
+              <div class="col">
+                {{ form1.nomination_type|as_crispy_field}}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-center">
+            <button class="btn btn-success" type="submit">Confirm</button>
+          </div>
+        </form>  
+      </div>
+    </div>
+  </section>
+</body> 
+{% endblock %}

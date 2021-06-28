@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+    .asteriskField {
+        display: none;
+      }
+</style>
+<body>
+<div class="container" style="background-color: #ffffff;">
+    <form action="{% url 'request_change' %}" method="POST">
+        {% csrf_token %}
+        <div class="card-header my-5" style="color: blue; background-color:#ffffff">
+            <h4 class="mb-4"><strong>Self Service on Policy Request</strong></h4>
+            <h6>Choose the type of servicing you want to make a change request</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col pb-5">
+                <label for="user_policy">Select User Policy</label>
+                <select class="form-control form-control-sm" name="user_policy" required>
+                    <option value="" selected disabled>Please select</option>
+                    {% for policy in user_policy  %}
+                    <option value="{{policy.policy_details.policy_number}}">{{policy.policy_details.policy_number}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col pb-5">
+                <label for="request_type">Select Request Type</label>
+                <select class="form-control form-control-sm" name="request_type" required>
+                    <option value="" selected disabled>Please select</option> 
+                    <option value="MSVR">MSVR</option>
+                    <option value="Nomination">Nomination</option>          
+                </select>
+            </div>
+            </div>
+        </div>
+        <div class="card-footer pb-5 bg-white">
+            <a class="btn btn-primary float-left" href={% url 'homepage' %}>Back</a>
+            <button class="btn btn-success float-right" type="submit">Next</button>
+        </div>
+    </form>
+</div>
+</body>
+
+
+{% endblock %}
