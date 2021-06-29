@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'user_accounts', #local account
  
     "crispy_forms",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     # 'rest_framework',
 ]
 
@@ -108,11 +112,28 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 client_id = 'ecaa7b18-f2a7-43db-85a1-56c7fcf76280'
 client_secret = 'FF..gW.Sa2IA9S5nekb-PwmI7_jt9pzRP2'
 tenant_id = 'c326d7f8-e4e3-4675-9b28-27d41a70b337'
 
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -136,6 +157,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = 'homepage'
 LOGOUT_REDIRECT_URL = '/'
+
+
+
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
