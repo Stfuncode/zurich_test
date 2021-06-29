@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
-from ms_identity_web.configuration import AADConfig
-from ms_identity_web import IdentityWebPython
+# from ms_identity_web.configuration import AADConfig
+# from ms_identity_web import IdentityWebPython
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -136,7 +136,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 3
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -160,10 +160,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = 'homepage'
 LOGOUT_REDIRECT_URL = '/'
-AAD_CONFIG = AADConfig.parse_json(file_path='aad.config.json')
-MS_IDENTITY_WEB = IdentityWebPython(AAD_CONFIG)
-ERROR_TEMPLATE = 'auth/{}.html' # for rendering 401 or other errors from msal_middleware
-MIDDLEWARE.append('ms_identity_web.django.middleware.MsalMiddleware')
+# AAD_CONFIG = AADConfig.parse_json(file_path='aad.config.json')
+# MS_IDENTITY_WEB = IdentityWebPython(AAD_CONFIG)
+# ERROR_TEMPLATE = 'auth/{}.html' # for rendering 401 or other errors from msal_middleware
+# MIDDLEWARE.append('ms_identity_web.django.middleware.MsalMiddleware')
 
 # EMAIL_HOST = 'smtp.mailtrap.io'
 # EMAIL_PORT = 2525

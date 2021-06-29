@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.conf import settings
 from .forms import *
 from .models import *
-ms_identity_web = settings.MS_IDENTITY_WEB
+# ms_identity_web = settings.MS_IDENTITY_WEB
 from django.core.mail import BadHeaderError, EmailMultiAlternatives
 from django.http import HttpResponse
 from xhtml2pdf import pisa
@@ -198,23 +198,23 @@ def msvr(request, pk):
             return redirect('msvr', pk=pk)  
     return render(request, 'msvr.html', context)
 
-@ms_identity_web.login_required
-def token_details(request):
-    return render(request, 'auth/token.html')
+# @ms_identity_web.login_required
+# def token_details(request):
+#     return render(request, 'auth/token.html')
 
-@ms_identity_web.login_required
-def call_ms_graph(request):
-    ms_identity_web.acquire_token_silently()
-    graph = 'https://graph.microsoft.com/v1.0/users'
-    authZ = f'Bearer {ms_identity_web.id_data._access_token}'
-    results = requests.get(graph, headers={'Authorization': authZ}).json()
+# @ms_identity_web.login_required
+# def call_ms_graph(request):
+#     ms_identity_web.acquire_token_silently()
+#     graph = 'https://graph.microsoft.com/v1.0/users'
+#     authZ = f'Bearer {ms_identity_web.id_data._access_token}'
+#     results = requests.get(graph, headers={'Authorization': authZ}).json()
 
-    # trim the results down to 5 and format them.
-    if 'value' in results:
-        results ['num_results'] = len(results['value'])
-        results['value'] = results['value'][:5]
+#     # trim the results down to 5 and format them.
+#     if 'value' in results:
+#         results ['num_results'] = len(results['value'])
+#         results['value'] = results['value'][:5]
 
-    return render(request, 'auth/call-graph.html', context=dict(results=results))
+#     return render(request, 'auth/call-graph.html', context=dict(results=results))
 def logout(request):
     auth.logout(request)
     return redirect('login')
