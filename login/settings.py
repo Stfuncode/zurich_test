@@ -27,7 +27,7 @@ SECRET_KEY = '12345'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+ALLOWED_HOSTS =  ['*']
 
 # Application definition
 
@@ -136,7 +136,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# SITE_ID = 1
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
