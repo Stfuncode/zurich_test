@@ -136,8 +136,6 @@ tenant_id = 'c326d7f8-e4e3-4675-9b28-27d41a70b337'
 #     }
 # }
 
-# SITE_ID = 1
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
